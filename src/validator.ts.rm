@@ -1,0 +1,7 @@
+import { Schemas } from '../types'
+
+import { anySchemaEntity } from './schema/any'
+
+export class Schema implements Schemas {
+  public validatorsList = [anySchemaEntity]
+}

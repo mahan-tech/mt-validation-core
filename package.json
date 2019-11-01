@@ -66,5 +66,8 @@
     "extension": [
       ".js"
     ]
+  },
+  "dependencies": {
+    "sanitizer": "^0.1.3"
   }
 }
