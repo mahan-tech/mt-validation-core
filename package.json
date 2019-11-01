@@ -1,0 +1,70 @@
+{
+  "name": "@mahan-tech/mt-module-boilerplate",
+  "version": "1.0.0",
+  "description": "npm wrapper library to create applications",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc -w",
+    "test": "jest",
+    "coverage": "nyc npm test",
+    "prettier": "prettier {src,tests}/**/*.ts",
+    "prettier:fix": "npm run prettier -- --write",
+    "precommit": "lint-staged && npm test",
+    "release": "rm -rf dist; npm run build; npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mahan-tech/mt-module-boilerplate.git"
+  },
+  "keywords": [
+    "mahan-tech",
+    "stack",
+    "wrapper"
+  ],
+  "author": "Mahan hazrati <eng.tech.senior@gmail.com>",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/mahan-tech/mt-module-boilerplate/issues"
+  },
+  "homepage": "https://github.com/mahan-tech/mt-module-boilerplate#readme",
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.2",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.2.5",
+    "nyc": "^14.1.1",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.19.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.5.3"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run prettier:fix",
+      "git add"
+    ]
+  },
+  "pre-commit": [
+    "precommit"
+  ],
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text",
+      "html"
+    ],
+    "include": [
+      "dist/*.js",
+      "dist/**/*.js"
+    ],
+    "exclude": [
+      "dist/tests/**/*.js"
+    ],
+    "extension": [
+      ".js"
+    ]
+  }
+}
