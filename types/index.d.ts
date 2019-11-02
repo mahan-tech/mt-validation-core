@@ -1,4 +1,8 @@
-export type SchemaEntityFn = (args: any, childValidators: any, data: any) => any
+export type SchemaEntityFn = (
+  args: any,
+  data: any,
+  childValidators?: any
+) => any
 
 export interface SchemaEntity {
   name: string

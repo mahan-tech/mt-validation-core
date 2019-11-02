@@ -5,7 +5,7 @@ import { OPTIONAL } from '../constants'
 
 export const anySchemaEntity: SchemaEntity = {
   name: 'any',
-  fn: (args, childValidators, data) => {
+  fn: (args, data) => {
     if (typeof data === 'undefined' || isNull(data)) {
       if (args && args.opt) {
         return OPTIONAL

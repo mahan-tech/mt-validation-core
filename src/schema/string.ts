@@ -7,7 +7,7 @@ import { OPTIONAL } from '../constants'
 
 export const stringSchemaEntity: SchemaEntity = {
   name: 'string',
-  fn: (args, childValidators, data) => {
+  fn: (args, data) => {
     const type = typeof data
     // Throw if both lower & upper are true
     if (args && (args.lower && args.upper)) {

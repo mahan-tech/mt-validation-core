@@ -5,7 +5,7 @@ import { OPTIONAL } from '../constants'
 
 export const booleanSchemaEntity: SchemaEntity = {
   name: 'boolean',
-  fn: (args, childValidators, data) => {
+  fn: (args, data) => {
     if (typeof data === 'boolean') {
       return data
     }

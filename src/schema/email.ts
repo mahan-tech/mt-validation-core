@@ -6,7 +6,7 @@ import { OPTIONAL } from '../constants'
 
 export const emailSchemaEntity: SchemaEntity = {
   name: 'email',
-  fn: (args, childValidators, data) => {
+  fn: (args, data) => {
     if (typeof data === 'undefined' || isNull(data)) {
       if (args && args.opt) {
         return OPTIONAL
@@ -14,7 +14,7 @@ export const emailSchemaEntity: SchemaEntity = {
       throw new Error('Got undefined, required Email (string)')
     }
 
-    let type = typeof data
+    const type = typeof data
 
     if (type !== 'string') {
       throw new Error(`Got ${type}, required Email (string)`)
