@@ -74,4 +74,8 @@ describe('Schema Number', () => {
   it('Should cast the number value to Float if args consisted of coerceFloat option', async () => {
     expect(numberSchemaEntity.fn({ coerceFloat: true }, '5.55')).toEqual(5.55)
   })
+
+  it('Should return Integer number', async () => {
+    expect(numberSchemaEntity.fn(UNDEF, '5')).toEqual(5)
+  })
 })
