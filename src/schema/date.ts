@@ -2,11 +2,18 @@ import { isNull } from 'util'
 
 import { SchemaEntity } from '../../types'
 import { OPTIONAL } from '../constants'
-// import { OPTIONAL } from '../constants'
+
+export interface DateOptions {
+  opt?: boolean
+  parse?: boolean
+  min?: number | string | Date
+  max?: number | string | Date
+}
 
 export const dateSchemaEntity: SchemaEntity = {
-  name: 'date',
-  fn: (args, data) => {
+  name: 'Date',
+  acceptsRecursion: false,
+  fn: (args?: DateOptions, data?: any) => {
     const type = typeof data
 
     // If we have no data, and this value is not optional, throw

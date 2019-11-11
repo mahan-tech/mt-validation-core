@@ -3,9 +3,20 @@ import { isNull } from 'util'
 import { SchemaEntity } from '../../types'
 import { OPTIONAL } from '../constants'
 
+export interface NumberOptions {
+  opt?: boolean
+  minEqual?: number
+  maxEqual?: number
+  min?: number
+  max?: number
+  coerceInteger?: boolean | number
+  coerceFloat?: boolean
+}
+
 export const numberSchemaEntity: SchemaEntity = {
-  name: 'number',
-  fn: (args, data) => {
+  name: 'Number',
+  acceptsRecursion: false,
+  fn: (args?: NumberOptions, data?: any) => {
     if (typeof data === 'undefined' || isNull(data)) {
       if (args && args.opt) {
         return OPTIONAL

@@ -3,6 +3,19 @@ import { UNDEF, OPTIONAL } from '../constants'
 import { booleanSchemaEntity } from './boolean'
 
 describe('Schema Boolean', () => {
+  it('Should validate structure of the schema', async () => {
+    expect(Object.keys(booleanSchemaEntity)).toEqual([
+      'name',
+      'acceptsRecursion',
+      'fn'
+    ])
+    expect(typeof booleanSchemaEntity.fn).toEqual('function')
+    expect(typeof booleanSchemaEntity.acceptsRecursion).toEqual('boolean')
+    expect(typeof booleanSchemaEntity.name).toEqual('string')
+    expect(booleanSchemaEntity.acceptsRecursion).toBeFalsy()
+    expect(booleanSchemaEntity.name).toEqual('Boolean')
+  })
+
   it('Should validate correctly and return true', async () => {
     expect(booleanSchemaEntity.fn(UNDEF, true)).toBeTruthy()
   })

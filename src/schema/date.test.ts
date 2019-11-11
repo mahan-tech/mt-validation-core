@@ -3,6 +3,19 @@ import { UNDEF, OPTIONAL } from '../constants'
 import { dateSchemaEntity } from './date'
 
 describe('Schema Date', () => {
+  it('Should validate structure of the schema', async () => {
+    expect(Object.keys(dateSchemaEntity)).toEqual([
+      'name',
+      'acceptsRecursion',
+      'fn'
+    ])
+    expect(typeof dateSchemaEntity.fn).toEqual('function')
+    expect(typeof dateSchemaEntity.acceptsRecursion).toEqual('boolean')
+    expect(typeof dateSchemaEntity.name).toEqual('string')
+    expect(dateSchemaEntity.acceptsRecursion).toBeFalsy()
+    expect(dateSchemaEntity.name).toEqual('Date')
+  })
+
   it('Should throw error if value was undefined', async () => {
     expect(() => {
       dateSchemaEntity.fn(UNDEF, UNDEF)

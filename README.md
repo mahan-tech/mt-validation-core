@@ -8,24 +8,20 @@ For some of its applications can point out to:
 
 # Design / Architecture
 
-This library designed and architected to bring more simplicity and increase the velocity of development.
+This library designed to bring more simplicity and increase the velocity of development.
 
 To simplify the way validation works we have to first look at the work flow of validation.
 Validation supports various numbers of schemas which you can use to validate your data, for example make sure the data has your following structure or datatype or after validation will you expect to be returned in your preferred datatype or not.
 
 ### Workflow
 
-#### 1- Schema Checkpoint (Schema validation)
+#### 1 - Schema Checkpoint (Schema validation)
 
 This step makes sure that the schema that has been defined by developer follows the guidelines and if not, it will throw exception to make the developer know that defined validation is not valid.
 
-#### 2 - Parsing
+#### 2 - Validation
 
-This step converts developer's schema to an understandable form of code for the library to be able to compile and make sure it will validate the input correctly
-
-#### 3 - Validation
-
-This steps will run the parsed schema throw the validations and will create a OK list.
+This steps will run the validated schema throw the validations and will create a OK list.
 **At this step, no exception will thrown.**
 OK list consists of your original schema and their status.
 if schema is valid, it will return it's original/parsed value as developer structured, if not, it will return an error class and the reason for it's rejection.
@@ -47,7 +43,7 @@ import { Validation } from 'mt-validation-core'
 
 const options = {} // refer to document for more info
 const validation = new Validation(options)
-validation.setSchema(...)
+validation.schema(...)
 validation.validate(...)
 ```
 
@@ -55,16 +51,15 @@ validation.validate(...)
 
 At the initialization, you can pass options to customize the use base on your need
 
-| Option   | Default value | Value type | Possible values                     | Note                                                                                                                                                                                               |
-| -------- | ------------- | ---------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `strict` | `false`       | `Boolean`  | - `false`<br>- `true`               | Only accepts the defined values on schema, Throws error if integrity of schema's being violated                                                                                                    |
-| `mode`   | `schema`      | `string`   | - `error`<br>- `schema`<br>- `list` | - `error` will throw exception as soon as it's being found<br> - `schema` will return the errors according to the same structure as schema<br>- `list` will return the errors in the form of array |
+| Option | Default value | Value type | Possible values                     | Note                                                                                                                                                                                               |
+| ------ | ------------- | ---------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mode` | `schema`      | `string`   | - `error`<br>- `schema`<br>- `list` | - `error` will throw exception as soon as it's being found<br> - `schema` will return the errors according to the same structure as schema<br>- `list` will return the errors in the form of array |
 
-#### setSchema(schema: any) => void | Error:
+#### schema(schema: any) => void | Error:
 
-To set your desirable schema into the validation, you can use the `setSchema` function which is a public function in `Validation` class.
+To set your desirable schema into the validation, you can use the `schema` function which is a public function in `Validation` class.
 This function will act as checkpoint to certify that your schema is valid and precedable.
-**This method will handle the step #1 and step #2 of the workflow.**
+**This method will handle the step #1 of the workflow.**
 
 ##### schema:
 
@@ -74,7 +69,7 @@ To define schema, you need to use the validation schemas as following.
 import { Schemas as s } from 'mt-validation-core'
 
 const validation = new Validation()
-validation.setSchema(s.String())
+validation.schema(s.String())
 validation.validate('Valid string')
 ```
 
@@ -91,5 +86,5 @@ Here is the list of acceptable schemas under `Schemas` object:
 
 #### validate(input: any) => any | any[] | Error:
 
-To run the step #3 of the workflow, you need to pass the data that you are going to validate against the schema.
+To run the step #2 of the workflow, you need to pass the data that you are going to validate against the schema.
 The structure of the output in this method is base on the option `mode` on initialization.

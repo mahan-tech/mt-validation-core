@@ -3,11 +3,23 @@ import { isNull } from 'util'
 
 import { SchemaEntity } from '../../types'
 import { OPTIONAL } from '../constants'
-// import { OPTIONAL } from '../constants'
+
+export interface StringOptions {
+  opt?: boolean
+  lower?: boolean
+  upper?: boolean
+  min?: number
+  max?: number
+  len?: number
+  trim?: boolean
+  regex?: RegExp
+  sanitize?: boolean
+}
 
 export const stringSchemaEntity: SchemaEntity = {
-  name: 'string',
-  fn: (args, data) => {
+  name: 'String',
+  acceptsRecursion: false,
+  fn: (args?: StringOptions, data?: any) => {
     const type = typeof data
     // Throw if both lower & upper are true
     if (args && (args.lower && args.upper)) {

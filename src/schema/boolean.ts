@@ -3,9 +3,15 @@ import { isNull } from 'util'
 import { SchemaEntity } from '../../types'
 import { OPTIONAL } from '../constants'
 
+export interface BooleanOptions {
+  opt?: boolean
+  coerce?: boolean
+}
+
 export const booleanSchemaEntity: SchemaEntity = {
-  name: 'boolean',
-  fn: (args, data) => {
+  name: 'Boolean',
+  acceptsRecursion: false,
+  fn: (args?: BooleanOptions, data?: any) => {
     if (typeof data === 'boolean') {
       return data
     }

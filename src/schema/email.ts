@@ -1,12 +1,18 @@
-import { isNull } from 'util'
 import * as isEmail from 'isemail'
+import { isNull } from 'util'
 
 import { SchemaEntity } from '../../types'
 import { OPTIONAL } from '../constants'
 
+export interface EmailOptions {
+  opt?: boolean
+  normalize?: boolean
+}
+
 export const emailSchemaEntity: SchemaEntity = {
-  name: 'email',
-  fn: (args, data) => {
+  name: 'Email',
+  acceptsRecursion: false,
+  fn: (args?: EmailOptions, data?: any) => {
     if (typeof data === 'undefined' || isNull(data)) {
       if (args && args.opt) {
         return OPTIONAL

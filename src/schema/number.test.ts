@@ -3,6 +3,19 @@ import { UNDEF, OPTIONAL } from '../constants'
 import { numberSchemaEntity } from './number'
 
 describe('Schema Number', () => {
+  it('Should validate structure of the schema', async () => {
+    expect(Object.keys(numberSchemaEntity)).toEqual([
+      'name',
+      'acceptsRecursion',
+      'fn'
+    ])
+    expect(typeof numberSchemaEntity.fn).toEqual('function')
+    expect(typeof numberSchemaEntity.acceptsRecursion).toEqual('boolean')
+    expect(typeof numberSchemaEntity.name).toEqual('string')
+    expect(numberSchemaEntity.acceptsRecursion).toBeFalsy()
+    expect(numberSchemaEntity.name).toEqual('Number')
+  })
+
   it('Should throw error if value was undefined', async () => {
     expect(() => {
       numberSchemaEntity.fn(UNDEF, UNDEF)

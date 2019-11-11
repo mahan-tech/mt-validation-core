@@ -3,6 +3,19 @@ import { UNDEF, OPTIONAL } from '../constants'
 import { anySchemaEntity } from './any'
 
 describe('Schema Any', () => {
+  it('Should validate structure of the schema', async () => {
+    expect(Object.keys(anySchemaEntity)).toEqual([
+      'name',
+      'acceptsRecursion',
+      'fn'
+    ])
+    expect(typeof anySchemaEntity.fn).toEqual('function')
+    expect(typeof anySchemaEntity.acceptsRecursion).toEqual('boolean')
+    expect(typeof anySchemaEntity.name).toEqual('string')
+    expect(anySchemaEntity.acceptsRecursion).toBeFalsy()
+    expect(anySchemaEntity.name).toEqual('Any')
+  })
+
   it('Should validate correctly and return the string value', async () => {
     expect(anySchemaEntity.fn(UNDEF, 'test-value')).toEqual('test-value')
   })

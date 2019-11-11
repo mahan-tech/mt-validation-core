@@ -3,6 +3,19 @@ import { UNDEF, OPTIONAL } from '../constants'
 import { emailSchemaEntity } from './email'
 
 describe('Schema Email', () => {
+  it('Should validate structure of the schema', async () => {
+    expect(Object.keys(emailSchemaEntity)).toEqual([
+      'name',
+      'acceptsRecursion',
+      'fn'
+    ])
+    expect(typeof emailSchemaEntity.fn).toEqual('function')
+    expect(typeof emailSchemaEntity.acceptsRecursion).toEqual('boolean')
+    expect(typeof emailSchemaEntity.name).toEqual('string')
+    expect(emailSchemaEntity.acceptsRecursion).toBeFalsy()
+    expect(emailSchemaEntity.name).toEqual('Email')
+  })
+
   it('Should throw error if value was undefined', async () => {
     expect(() => {
       emailSchemaEntity.fn(UNDEF, UNDEF)

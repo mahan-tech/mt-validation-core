@@ -3,6 +3,19 @@ import { UNDEF, OPTIONAL } from '../constants'
 import { stringSchemaEntity } from './string'
 
 describe('Schema String', () => {
+  it('Should validate structure of the schema', async () => {
+    expect(Object.keys(stringSchemaEntity)).toEqual([
+      'name',
+      'acceptsRecursion',
+      'fn'
+    ])
+    expect(typeof stringSchemaEntity.fn).toEqual('function')
+    expect(typeof stringSchemaEntity.acceptsRecursion).toEqual('boolean')
+    expect(typeof stringSchemaEntity.name).toEqual('string')
+    expect(stringSchemaEntity.acceptsRecursion).toBeFalsy()
+    expect(stringSchemaEntity.name).toEqual('String')
+  })
+
   it('Should throw error if args consisted of both lower and upper', async () => {
     expect(() => {
       stringSchemaEntity.fn({ lower: true, upper: true }, UNDEF)
