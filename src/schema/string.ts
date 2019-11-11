@@ -75,17 +75,8 @@ export const stringSchemaEntity: SchemaEntity = {
         )
       }
     }
-    // // Check if the user passed an array of
-    // // allowed values, if they did, check the
-    // // data we got matches one of them.
-    // if(Array.isArray(args.enum)) {
-    //   if(!args.enum.some(function(v) {
-    //     return v == data
-    //   })) {
-    //     throw new Error(`Got ${data}, does not match enum option`)
-    //   }
-    // }
-    if (args.sanitize) {
+
+    if (args && args.sanitize) {
       data = Sanitizer.escape(data)
     }
 
